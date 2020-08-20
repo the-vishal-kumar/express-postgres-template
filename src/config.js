@@ -24,13 +24,14 @@ const config = {
 			host: `localhost`, // default host
 			// eslint-disable-next-line no-undef
 			port: process.env.postgrePort || `5432`, // default port
-			dbName: Pack.name
+			dbName: Pack.name,
 		},
 		rollbarConfig: {
 			// eslint-disable-next-line no-undef
 			accessToken: process.env.rollbarAccessToken || ``,
 			captureUncaught: true,
-			captureUnhandledRejections: true
+			captureUnhandledRejections: true,
+			reportErrorRequest: true,
 		},
 	},
 };

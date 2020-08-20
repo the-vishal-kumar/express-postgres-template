@@ -7,8 +7,8 @@
 
 const { createAddUser } = require(`./add-user`);
 
-const createUserCore = (sequelize) => {
-	const addUser = createAddUser(sequelize);
+const createUserCore = ({ sequelize }) => {
+	const addUser = createAddUser({ sequelize });
 
 	return {
 		addUser,

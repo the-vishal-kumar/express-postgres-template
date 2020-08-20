@@ -5,7 +5,7 @@
 
 'use strict';
 
-const { validateInput, response: { toApiResponse, ApiError, errorCodes: { internalServerErrorCode } } } = require(`../../utils`);
+const { validateInput, toApiResponse, ApiError, errorCodes: { internalServerErrorCode } } = require(`../../utils`);
 
 const createAddUserRoute = async ({ core: { User: { addUser } }, router, ExpressValidator: { body, validationResult } }) => {
 	router.post(

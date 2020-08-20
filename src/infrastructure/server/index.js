@@ -10,33 +10,35 @@ const bodyParser = require(`body-parser`);
 const bodyParserJsonError = require(`express-body-parser-json-error`);
 
 const { createCore } = require(`../../core`);
-
 const Pack = require(`../../../package.json`);
+const { rollbar: { reportError } } = require(`./middlewares`);
+const { createUserRoute, createNotFoundRoute, createErrorRoute } = require(`./routes`);
 
-const { rollbarConfig } = require(`../../config`);
-const Middlewares = require(`./middlewares`);
-const Routes = require(`./routes`);
+const createApp = ({ sequelize }) => {
+	const core = createCore({ sequelize });
 
-const createApp = (sequelize) => {
-	const core = createCore(sequelize);
-    
 	const app = express();
 	app.use(bodyParser.json());
 	app.use(bodyParserJsonError());
 
-	if (rollbarConfig.accessToken) app.use(Middlewares.rollbar.errorHandler());
-
 	app.get(`/`, (req, res) => res.send(`
-        Welcome to <strong>${Pack.name}</strong>.<br>
-        Go to <a href='${Pack.repository.url}'>Github Repo</a>
-        `)
+	Welcome to <strong>${Pack.name}</strong>.<br>
+	Go to <a href='${Pack.repository.url}'>Github Repo</a>
+	`)
 	);
 
-	const userRoutes = Routes.createUserRoute(core);
+	const userRoutes = createUserRoute({ core });
 	app.use(`/users`, userRoutes);
 
-	const notFoundRoute = Routes.createNotFoundRoute;
+	const notFoundRoute = createNotFoundRoute();
 	app.use(notFoundRoute);
+
+	// Error Handling - Rollbar
+	// Method 1: following will kill the app in case of error
+	// app.use(rollbar.errorHandler());
+	// Method 2: following will not kill the app, instead will send server error
+	const errorRoute = createErrorRoute({ reportError });
+	app.use(errorRoute);
 
 	return app;
 };

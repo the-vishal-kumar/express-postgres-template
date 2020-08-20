@@ -13,7 +13,7 @@ const highlightSql = require(`sequelize-log-syntax-colors`);
 const { format } = require(`sql-formatter`);
 const { postgreConfig } = require(`../../config`);
 
-const config = {
+const sequelizeConfig = {
 	development: {
 		username: postgreConfig.userName,
 		password: postgreConfig.password,
@@ -26,4 +26,4 @@ const config = {
 	},
 };
 
-module.exports = config[env];
+module.exports = sequelizeConfig[env];

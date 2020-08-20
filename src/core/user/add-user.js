@@ -5,7 +5,7 @@
 
 'use strict';
 
-const createAddUser = (sequelize) => {
+const createAddUser = ({ sequelize }) => {
 	const { models: { User } } = sequelize;
 
 	const addUser = async ({ email }) => {

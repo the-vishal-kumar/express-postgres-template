@@ -7,10 +7,17 @@
 
 const Rollbar = require(`rollbar`);
 
-const { rollbarConfig } = require(`../../../config`);
+const { rollbarConfig: { accessToken, captureUncaught, captureUnhandledRejections, reportErrorRequest } } = require(`../../../config`);
 
-module.exports = new Rollbar({
-	accessToken: rollbarConfig.accessToken,
-	captureUncaught: rollbarConfig.captureUncaught,
-	captureUnhandledRejections: rollbarConfig.captureUnhandledRejections
-});
+const errorReporter = accessToken ?
+	new Rollbar({
+		accessToken,
+		captureUncaught,
+		captureUnhandledRejections,
+	})
+	:
+	console;
+
+module.exports = {
+	reportError: (err, req) => errorReporter.error(err, reportErrorRequest ? req : null),
+};

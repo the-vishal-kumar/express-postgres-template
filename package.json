@@ -1,7 +1,7 @@
 {
   "name": "nodejs-postgres-template",
   "version": "1.0.0",
-  "description": "CRUD application using NodeJs with Express framework, PostgreSQL as database, Sequeslize as ORM. Application uses rollbar for error tracking. Also contains Postman APIs collection",
+  "description": "CRUD application using NodeJs with Express framework, PostgreSQL as database, Sequeslize as ORM. Application uses Rollbar for error tracking, Postman APIs collection for testing APIs, and eslint, husky, and lint-staged for code-linting purposes.",
   "main": "src/index.js",
   "scripts": {
     "start": "node .",
@@ -29,7 +29,10 @@
     "sequelize",
     "rollbar",
     "newrelic",
-    "postman-collection"
+    "postman-collection",
+    "eslint",
+    "husky",
+    "lint-staged"
   ],
   "author": "Vishal Kumar",
   "license": "ISC",

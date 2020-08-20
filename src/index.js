@@ -18,7 +18,7 @@ const start = async () => {
 	const sequelizeConfig = sequelize.db.config;
 	console.log(`Sequelize connected to ${sequelizeConfig.host}:${sequelizeConfig.port}/${sequelizeConfig.database}`);
 
-	const app = createApp(sequelize);
+	const app = createApp({ sequelize });
 
 	const server = app.listen(port, () => {
 		console.log(`Server listening on localhost:${port}`);

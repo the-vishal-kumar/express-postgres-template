@@ -5,12 +5,14 @@
 
 'use strict';
 
-const paginate = require(`./paginate`);
-const response = require(`./response`);
+const { toPagination } = require(`./paginate`);
+const { toApiResponse, ApiError, errorCodes } = require(`./response`);
 const { validateInput } = require(`./validate-input`);
 
 module.exports = {
-	paginate,
-	response,
+	toPagination,
+	toApiResponse,
+	ApiError,
+	errorCodes,
 	validateInput,
 };

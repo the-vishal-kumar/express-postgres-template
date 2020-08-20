@@ -5,7 +5,7 @@
 
 'use strict';
 
-const createModel = (sequelize, { STRING, INTEGER }) => {
+const createUserModel = ({ sequelize, Sequelize: { STRING, INTEGER } }) => {
 	const User = sequelize.define(`User`, {
 		userId: {
 			allowNull: false,
@@ -30,5 +30,5 @@ const createModel = (sequelize, { STRING, INTEGER }) => {
 };
 
 module.exports = {
-	createModel,
+	createUserModel,
 };

@@ -2,7 +2,14 @@
 #### NodeJs v12.18.3
 #### PostgreSQL v12.4
 #### Sequelize v6.3.4
+#### ************
 #### Rollbar v2.19.2
+#### New Relic v6.12.0
+#### ************
+#### ESLint v7.7.0
+#### Husky v4.2.5
+#### Lint-Staged v10.2.11
+#### ************
 
 ## Installing PostgreSQL
 Go to https://www.postgresql.org/download and download according to your operating system
