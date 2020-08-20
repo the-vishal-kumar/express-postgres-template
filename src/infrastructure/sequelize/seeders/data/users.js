@@ -6,7 +6,7 @@
 'use strict';
 
 module.exports = [
-    {
-        email: `vishal194kumar@gmail.com`,
-    },
+	{
+		email: `vishal194kumar@gmail.com`,
+	},
 ];

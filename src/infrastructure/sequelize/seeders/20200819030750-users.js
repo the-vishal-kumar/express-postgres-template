@@ -5,9 +5,9 @@
 
 'use strict';
 
-const users = require('./data/users');
+const users = require(`./data/users`);
 
 module.exports = {
-  up: queryInterface => queryInterface.bulkInsert('User', users, {}),
-  down: queryInterface => queryInterface.bulkDelete('User', null, {}),
+	up: queryInterface => queryInterface.bulkInsert(`User`, users, {}),
+	down: queryInterface => queryInterface.bulkDelete(`User`, null, {}),
 };

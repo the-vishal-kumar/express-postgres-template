@@ -5,9 +5,9 @@
 
 'use strict';
 
-const rollbar = require('./rollbar');
-const { rollbarConfig } = require('../../../../config');
+const rollbar = require(`./rollbar`);
+const { rollbarConfig } = require(`../../../config`);
 
 module.exports = {
-    rollbar: rollbarConfig.accessToken ? rollbar : {},
+	rollbar: rollbarConfig.accessToken ? rollbar : {},
 };

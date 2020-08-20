@@ -5,16 +5,16 @@
 
 'use strict';
 
-const { createAddUser } = require('./add-user');
+const { createAddUser } = require(`./add-user`);
 
 const createUserCore = (sequelize) => {
-    const addUser = createAddUser(sequelize);
+	const addUser = createAddUser(sequelize);
 
-    return {
-        addUser,
-    };
+	return {
+		addUser,
+	};
 };
 
 module.exports = {
-    createUserCore,
+	createUserCore,
 };

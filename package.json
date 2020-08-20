@@ -2,11 +2,20 @@
   "name": "nodejs-postgres-template",
   "version": "1.0.0",
   "description": "CRUD application using NodeJs with Express framework, PostgreSQL as database, Sequeslize as ORM. Application uses rollbar for error tracking. Also contains Postman APIs collection",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node .",
     "db:migrate": "sequelize db:migrate",
-    "db:unmigrate": "sequelize db:migrate:undo"
+    "db:unmigrate": "sequelize db:migrate:undo",
+    "pretest": "./node_modules/.bin/eslint --ignore-path .gitignore . --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pretest"
+    }
+  },
+  "lint-staged": {
+    "*.js": ["./node_modules/.bin/eslint — fix", "git add"]
   },
   "repository": {
     "type": "git",
@@ -15,10 +24,12 @@
   "keywords": [
     "nodejs",
     "express",
+    "postgres",
     "postgresql",
     "sequelize",
     "rollbar",
-    "postman"
+    "newrelic",
+    "postman-collection"
   ],
   "author": "Vishal Kumar",
   "license": "ISC",
@@ -28,6 +39,7 @@
     "express": "^4.17.1",
     "express-body-parser-json-error": "^0.1.0",
     "express-validator": "^6.6.1",
+    "newrelic": "^6.12.0",
     "path": "^0.12.7",
     "pg": "^8.3.0",
     "rollbar": "^2.19.2",
@@ -36,5 +48,10 @@
     "sequelize-log-syntax-colors": "^2.0.0",
     "sql-formatter": "^2.3.3",
     "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.7.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11"
   }
 }

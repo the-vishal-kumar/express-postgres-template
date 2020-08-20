@@ -5,18 +5,18 @@
 
 'use strict';
 
-const { Router } = require('express');
-const ExpressValidator = require('express-validator');
-const { createAddUserRoute } = require('./add-user');
+const { Router } = require(`express`);
+const ExpressValidator = require(`express-validator`);
+const { createAddUserRoute } = require(`./add-user`);
 
 const createUserRoute = (core) => {
-    const router = new Router();
+	const router = new Router();
 
-    createAddUserRoute({core, router, ExpressValidator});
+	createAddUserRoute({core, router, ExpressValidator});
 
-    return router;
+	return router;
 };
 
 module.exports = {
-    createUserRoute,
+	createUserRoute,
 };

@@ -5,11 +5,11 @@
 
 'use strict';
 
-const { createUserRoute } = require('./user');
-const { createNotFoundRoute } = require('./not-found');
+const { createUserRoute } = require(`./user`);
+const { createNotFoundRoute } = require(`./not-found`);
 
 
 module.exports = {
-    createUserRoute,
-    createNotFoundRoute,
+	createUserRoute,
+	createNotFoundRoute,
 };

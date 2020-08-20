@@ -5,10 +5,10 @@
 
 'use strict';
 
-const sequelizeInfra = require('./sequelize');
-const serverInfra = require('./server');
+const sequelizeInfra = require(`./sequelize`);
+const serverInfra = require(`./server`);
 
 module.exports = {
-    sequelizeInfra,
-    serverInfra,
+	sequelizeInfra,
+	serverInfra,
 };
