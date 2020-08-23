@@ -9,12 +9,14 @@
 require(`dotenv`).config();
 // eslint-disable-next-line no-undef
 const newRelicLicenceKey = process.env.newRelicLicenceKey || ``;
+// eslint-disable-next-line no-undef
+const appName = process.env.appName;
 
 exports.config = {
 	/**
    * Array of application names.
    */
-	app_name: [`nodejs-postgres-template`],
+	app_name: [appName],
 	/**
    * Your New Relic license key.
    */
