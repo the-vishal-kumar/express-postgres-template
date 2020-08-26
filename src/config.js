@@ -7,20 +7,18 @@
 
 require(`dotenv`).config();
 
-// eslint-disable-next-line no-undef
-const env = process.env.NODE_ENV || `development`;
-// eslint-disable-next-line no-undef
-const serverPort = process.env.PORT || 8000;
-// eslint-disable-next-line no-undef
+/* eslint-disable no-undef */
+const NODE_ENV = process.env.NODE_ENV || `development`;
+const PORT = process.env.PORT || 8000;
 const POSTGRE_PORT = process.env.POSTGRE_PORT || 5432;
-// eslint-disable-next-line no-undef
 const ROLLBAR_ACCESS_TOKEN = process.env.ROLLBAR_ACCESS_TOKEN || ``;
+
 const Pack = require(`../package.json`);
 
 const config = {
 	development: {
 		serverConfig: {
-			port: serverPort,
+			port: PORT,
 		},
 		postgreConfig: {
 			username: `fun`,
@@ -39,4 +37,4 @@ const config = {
 	},
 };
 
-module.exports = config[env];
+module.exports = config[NODE_ENV];

@@ -8,7 +8,7 @@
 require(`dotenv`).config();
 
 // eslint-disable-next-line no-undef
-const env = process.env.NODE_ENV || `development`;
+const NODE_ENV = process.env.NODE_ENV || `development`;
 const highlightSql = require(`sequelize-log-syntax-colors`);
 const { format } = require(`sql-formatter`);
 const { postgreConfig: { username, password, database, host, dialect } } = require(`../../config`);
@@ -33,4 +33,4 @@ const config = {
 	},
 };
 
-module.exports = config[env];
+module.exports = config[NODE_ENV];

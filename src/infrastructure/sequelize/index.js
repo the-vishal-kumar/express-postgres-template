@@ -5,6 +5,7 @@
 
 'use strict';
 
+require(`dotenv`).config();
 const Sequelize = require(`sequelize`);
 
 const { postgreConfig: { dialect, username, password, host, port, database } } = require(`../../config`);
@@ -12,7 +13,8 @@ const { logging, ssl, dialectOptions } = require(`./config`);
 const { User: { createUserModel } } = require(`./models`);
 
 const createSequelize = async () => {
-	let dbUrl = `${dialect}://${username}:${password}@${host}:${port}/${database}`;
+	// eslint-disable-next-line no-undef
+	let dbUrl = process.env.DATABASE_URL || `${dialect}://${username}:${password}@${host}:${port}/${database}`;
 
 	const sequelize = new Sequelize(dbUrl, {
 		dialect,
