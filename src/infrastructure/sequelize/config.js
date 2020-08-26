@@ -11,19 +11,25 @@ require(`dotenv`).config();
 const env = process.env.NODE_ENV || `development`;
 const highlightSql = require(`sequelize-log-syntax-colors`);
 const { format } = require(`sql-formatter`);
-const { postgreConfig } = require(`../../config`);
+const { postgreConfig: { username, password, database, host } } = require(`../../config`);
 
-const sequelizeConfig = {
+const config = {
 	development: {
-		username: postgreConfig.userName,
-		password: postgreConfig.password,
-		database: postgreConfig.dbName,
-		host: postgreConfig.host,
-		dialect: `postgres`,
+		username,
+		password,
+		database,
+		host,
 		logging: text => console.log(highlightSql(format(text))),
 		sync: true,
+		native: true,
 		ssl: true,
+		dialectOptions: {
+			ssl: {
+				require: true,
+				rejectUnauthorized: false,
+			},
+		},
 	},
 };
 
-module.exports = sequelizeConfig[env];
+module.exports = config[env];

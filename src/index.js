@@ -1,5 +1,5 @@
 /**
- * ./index.js
+ * src/index.js
  * Vishal Kumar
  */
 
@@ -9,9 +9,9 @@
 let nodeVersion = parseInt(process.versions.node);
 if (nodeVersion < 12) throw (`Please upgrade Node version to 12 or higher`);
 
-require(`newrelic`);
+if (process.versions.NEWRELIC_LICENCE_KEY) require(`newrelic`);
 const { sequelizeInfra: { createSequelize }, serverInfra: { createApp } } = require(`./infrastructure`);
-const { port } = require(`./config`).serverConfig;
+const { serverConfig: { port } } = require(`./config`);
 
 const start = async () => {
 	const sequelize = await createSequelize();

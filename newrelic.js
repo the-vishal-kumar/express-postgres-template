@@ -8,19 +8,19 @@
 
 require(`dotenv`).config();
 // eslint-disable-next-line no-undef
-const newRelicLicenceKey = process.env.newRelicLicenceKey || ``;
+const NEWRELIC_LICENCE_KEY = process.env.NEWRELIC_LICENCE_KEY || ``;
 // eslint-disable-next-line no-undef
-const appName = process.env.appName;
+const APP_NAME = process.env.APP_NAME;
 
 exports.config = {
 	/**
    * Array of application names.
    */
-	app_name: [appName],
+	app_name: [APP_NAME],
 	/**
    * Your New Relic license key.
    */
-	license_key: newRelicLicenceKey,
+	license_key: NEWRELIC_LICENCE_KEY,
 	/**
    * This setting controls distributed tracing.
    * Distributed tracing lets you see the path that a request takes through your

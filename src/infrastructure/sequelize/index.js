@@ -7,21 +7,22 @@
 
 const Sequelize = require(`sequelize`);
 
-const { postgreConfig } = require(`../../config`);
-const sequelizeConfig = require(`./config`);
+const { postgreConfig: { dialect, username, password, host, port, database } } = require(`../../config`);
+const { logging, ssl, dialectOptions } = require(`./config`);
 const { User: { createUserModel } } = require(`./models`);
 
 const createSequelize = async () => {
-	let dbUrl = `${sequelizeConfig.dialect}://${postgreConfig.userName}:${postgreConfig.password}@${postgreConfig.host}:${postgreConfig.port}/${postgreConfig.dbName}`;
+	let dbUrl = `${dialect}://${username}:${password}@${host}:${port}/${database}`;
 
 	const sequelize = new Sequelize(dbUrl, {
-		dialect: sequelizeConfig.dialect,
-		logging: sequelizeConfig.logging,
-		ssl: sequelizeConfig.ssl,
+		dialect,
+		logging,
+		ssl,
+		dialectOptions
 	});
 
 	// Create Models
-	const User = createUserModel({sequelize, Sequelize});
+	const User = createUserModel({ sequelize, Sequelize });
 
 	// Associate Models
 	const models = {

@@ -42,9 +42,27 @@ Summed up steps:-
 - to exit as super user
     - exit
 
+## Generating Rollbar Access Token
+- Signup using Github or Login using your credentials
+- Go to Projects. Create a new Project (Enter a name, choose timezone, etc)
+- Choose Node.js as Primary Rollbar SDK
+- Copy the accessToken and save it in .env file against ROLLBAR_ACCESS_TOKEN (See Starting the project for .env file location)
+
+## Generating New Relic Licence Key
+- Signup or Login using your credentials
+- Click on Add More
+- Choose Node JS under Back-end, front-end, and mobile applications
+- Enter a Project name and download custom configuration file
+- Open the downloaded file in any text editor and copy the value of 'license_key'
+- Paste it against NEWRELIC_LICENCE_KEY in .env file (See Starting the project for .env file location)
+
 ## Starting the project
-- npm i
-- npm run start
+- Make copy of .env.sample as .env in root directory
+- Generate Rollbar Access Token (Optional)
+- Generate NewRelic Licence Key (Optional)
+- Open Terminal in root directory of project and run following commands:
+    - npm i
+    - npm run start
 
 ## Postman API Test Cases
 - open postman

@@ -1,7 +1,7 @@
 {
   "name": "nodejs-postgres-template",
   "version": "1.0.0",
-  "description": "CRUD application using NodeJs with Express framework, PostgreSQL as database, Sequeslize as ORM. Application uses Rollbar for error tracking, Postman APIs collection for testing APIs, and eslint, husky, and lint-staged for code-linting purposes.",
+  "description": "CRUD application using NodeJs with Express framework, PostgreSQL as database, Sequeslize as ORM. Application uses Rollbar for error tracking, NewRelic for APIs analysis, Postman APIs collection for testing APIs, and eslint, husky, and lint-staged for code-linting purposes.",
   "main": "src/index.js",
   "scripts": {
     "start": "node .",
@@ -15,7 +15,10 @@
     }
   },
   "lint-staged": {
-    "*.js": ["./node_modules/.bin/eslint — fix", "git add"]
+    "*.js": [
+      "./node_modules/.bin/eslint — fix",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
