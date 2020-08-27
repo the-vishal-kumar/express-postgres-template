@@ -21,7 +21,6 @@ const config = {
 		host,
 		logging: text => console.log(highlightSql(format(text))),
 		sync: true,
-		native: true,
 		ssl: true,
 		dialect,
 		dialectOptions: {

@@ -10,6 +10,8 @@
 #### Husky v4.2.5
 #### Lint-Staged v10.2.11
 #### ************
+#### CircleCI
+#### Heroku
 
 ## Installing PostgreSQL
 Go to https://www.postgresql.org/download and download according to your operating system
