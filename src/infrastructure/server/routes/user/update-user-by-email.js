@@ -1,5 +1,5 @@
 /**
- * add-user.js
+ * update-user-by-email.js
  * Vishal Kumar
  */
 
@@ -7,17 +7,18 @@
 
 const { validateInput, toApiResponse, ApiError, errorCodes: { internalServerErrorCode } } = require(`../../utils`);
 
-const createAddUserRoute = async ({ core: { User: { addUser } }, router, ExpressValidator: { body, validationResult } }) => {
-	router.post(
-		`/addUser`,
+const createUpdateUserByEmailRoute = async ({ core: { User: { updateUserByEmail } }, router, ExpressValidator: { body, validationResult } }) => {
+	router.put(
+		`/updateUserByEmail`,
 		[
-			body(`email`).isEmail()
+			body(`email`).isEmail(),
+			body(`newEmail`).isEmail(),
 		],
 		validateInput(validationResult),
-		toApiResponse(async ({ body: { email } }) => {
+		toApiResponse(async ({ body: { email, newEmail } }) => {
 			try {
-				let data = await addUser({ email });
-				return { status: 201, data };
+				await updateUserByEmail({ email, newEmail });
+				return {};
 			} catch (error) {
 				let apiError = new ApiError({
 					code: internalServerErrorCode,
@@ -37,5 +38,5 @@ const createAddUserRoute = async ({ core: { User: { addUser } }, router, Express
 };
 
 module.exports = {
-	createAddUserRoute,
+	createUpdateUserByEmailRoute,
 };

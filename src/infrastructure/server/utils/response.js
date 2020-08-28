@@ -7,7 +7,7 @@
 
 const toApiResponse = (fn) => async (req, res, next) => {
 	try {
-		const { status, data, meta = null } = await fn(req, res);
+		const { status = 200, data, meta } = await fn(req, res);
 		res.status(status).send({
 			success: true,
 			status,

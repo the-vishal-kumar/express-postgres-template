@@ -9,7 +9,7 @@ require(`dotenv`).config();
 const Sequelize = require(`sequelize`);
 
 const { postgreConfig: { dialect, username, password, host, port, database } } = require(`../../config`);
-const { logging, ssl, dialectOptions } = require(`./config`);
+const { logging, ssl, dialectOptions, sync } = require(`./config`);
 const { User: { createUserModel } } = require(`./models`);
 
 const createSequelize = async () => {
@@ -37,7 +37,7 @@ const createSequelize = async () => {
 		model.associate(models);
 	});
 
-	if (sequelize.sync) await sequelize.sync({ force: true });
+	if (sync) await sequelize.sync({ force: true });
 
 	return {
 		db: sequelize,

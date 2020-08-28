@@ -1,5 +1,5 @@
 /**
- * add-user.js
+ * delete-user-by-email.js
  * Vishal Kumar
  */
 
@@ -7,17 +7,17 @@
 
 const { validateInput, toApiResponse, ApiError, errorCodes: { internalServerErrorCode } } = require(`../../utils`);
 
-const createAddUserRoute = async ({ core: { User: { addUser } }, router, ExpressValidator: { body, validationResult } }) => {
-	router.post(
-		`/addUser`,
+const createDeleteUserByEmailRoute = async ({ core: { User: { deleteUserByEmail } }, router, ExpressValidator: { body, validationResult } }) => {
+	router.delete(
+		`/deleteUserByEmail`,
 		[
 			body(`email`).isEmail()
 		],
 		validateInput(validationResult),
 		toApiResponse(async ({ body: { email } }) => {
 			try {
-				let data = await addUser({ email });
-				return { status: 201, data };
+				await deleteUserByEmail({ email });
+				return {};
 			} catch (error) {
 				let apiError = new ApiError({
 					code: internalServerErrorCode,
@@ -37,5 +37,5 @@ const createAddUserRoute = async ({ core: { User: { addUser } }, router, Express
 };
 
 module.exports = {
-	createAddUserRoute,
+	createDeleteUserByEmailRoute,
 };

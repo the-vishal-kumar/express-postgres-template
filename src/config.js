@@ -29,6 +29,25 @@ const config = {
 			dialect: `postgres`,
 		},
 		rollbarConfig: {
+			accessToken: ``,
+			captureUncaught: true,
+			captureUnhandledRejections: true,
+			reportErrorRequest: true,
+		},
+	},
+	production: {
+		serverConfig: {
+			port: PORT,
+		},
+		postgreConfig: {
+			username: `fun`,
+			password: `gyaan`,
+			host: `localhost`,
+			port: POSTGRE_PORT,
+			database: Pack.name,
+			dialect: `postgres`,
+		},
+		rollbarConfig: {
 			accessToken: ROLLBAR_ACCESS_TOKEN,
 			captureUncaught: true,
 			captureUnhandledRejections: true,

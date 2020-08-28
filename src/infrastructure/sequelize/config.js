@@ -30,6 +30,22 @@ const config = {
 			},
 		},
 	},
+	production: {
+		username,
+		password,
+		database,
+		host,
+		logging: false,
+		sync: false,
+		ssl: true,
+		dialect,
+		dialectOptions: {
+			ssl: {
+				require: true,
+				rejectUnauthorized: false,
+			},
+		},
+	},
 };
 
 module.exports = config[NODE_ENV];
