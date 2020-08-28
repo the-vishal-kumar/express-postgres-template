@@ -15,14 +15,11 @@ const { postgreConfig: { username, password, database, host, dialect } } = requi
 
 const config = {
 	development: {
-		username,
-		password,
-		database,
-		host,
+		// eslint-disable-next-line no-undef
+		url: process.env.DATABASE_URL || `${dialect}://${username}:${password}@${host}:${port}/${database}`,
 		logging: text => console.log(highlightSql(format(text))),
-		sync: true,
+		sync: true, // Resets the database
 		ssl: true,
-		dialect,
 		dialectOptions: {
 			ssl: {
 				require: true,
@@ -31,14 +28,11 @@ const config = {
 		},
 	},
 	production: {
-		username,
-		password,
-		database,
-		host,
+		// eslint-disable-next-line no-undef
+		url: process.env.DATABASE_URL || `${dialect}://${username}:${password}@${host}:${port}/${database}`,
 		logging: false,
 		sync: false,
 		ssl: true,
-		dialect,
 		dialectOptions: {
 			ssl: {
 				require: true,

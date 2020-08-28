@@ -8,15 +8,12 @@
 require(`dotenv`).config();
 const Sequelize = require(`sequelize`);
 
-const { postgreConfig: { dialect, username, password, host, port, database } } = require(`../../config`);
-const { logging, ssl, dialectOptions, sync } = require(`./config`);
+const { postgreConfig: { dialect } } = require(`../../config`);
+const { url, logging, ssl, dialectOptions, sync } = require(`./config`);
 const { User: { createUserModel } } = require(`./models`);
 
 const createSequelize = async () => {
-	// eslint-disable-next-line no-undef
-	let dbUrl = process.env.DATABASE_URL || `${dialect}://${username}:${password}@${host}:${port}/${database}`;
-
-	const sequelize = new Sequelize(dbUrl, {
+	const sequelize = new Sequelize(url, {
 		dialect,
 		logging,
 		ssl,
