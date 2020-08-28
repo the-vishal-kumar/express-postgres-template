@@ -23,7 +23,8 @@ const createApp = ({ sequelize }) => {
 
 	app.get(`/`, (req, res) => res.send(`
 	Welcome to <strong>${Pack.name}</strong>.<br>
-	Go to <a href='${Pack.repository.url}'>Github Repo</a>
+	Go to <a href='${Pack.repository.url}'>Github Repository</a><br>
+	Contact author <a href='https://www.linkedin.com/in/the-vishal-kumar/'>${Pack.author}</a>
 	`)
 	);
 
