@@ -11,7 +11,7 @@ require(`dotenv`).config();
 const NODE_ENV = process.env.NODE_ENV || `development`;
 const highlightSql = require(`sequelize-log-syntax-colors`);
 const { format } = require(`sql-formatter`);
-const { postgreConfig: { username, password, database, host, dialect } } = require(`../../config`);
+const { postgreConfig: { dialect, username, password, database, host, port } } = require(`../../config`);
 
 const config = {
 	development: {

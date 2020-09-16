@@ -7,6 +7,15 @@
 
 module.exports = [
 	{
-		email: `vishal194kumar@gmail.com`,
+		email: `vishal@yopmail.com`,
+	},
+	{
+		email: `vipul@yopmail.com`,
+	},
+	{
+		email: `rakta@yopmail.com`,
+	},
+	{
+		email: `rekya@yopmail.com`,
 	},
 ];

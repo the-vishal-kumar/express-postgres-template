@@ -5,8 +5,11 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node .",
-    "db:migrate": "sequelize db:migrate",
-    "db:unmigrate": "sequelize db:migrate:undo",
+    "migration:generate": "npx sequelize migration:generate --name test",
+    "db:migrate": "npx sequelize db:migrate",
+    "db:migrate:undo": "npx sequelize db:migrate:undo",
+    "db:seed:all": "npx sequelize db:seed:all",
+    "db:seed:undo:all": "npx sequelize db:seed:undo:all",
     "pretest": "./node_modules/.bin/eslint --ignore-path .gitignore . --fix"
   },
   "husky": {
