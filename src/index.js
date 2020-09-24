@@ -9,7 +9,10 @@
 let nodeVersion = parseInt(process.versions.node);
 if (nodeVersion < 12) throw (`Please upgrade Node version to 12 or higher`);
 
-if (process.versions.NEWRELIC_LICENCE_KEY) require(`newrelic`);
+require(`dotenv`).config();
+const NEWRELIC_LICENCE_KEY = process.env.NEWRELIC_LICENCE_KEY || ``;
+if (NEWRELIC_LICENCE_KEY) require(`newrelic`);
+
 const { sequelizeInfra: { createSequelize }, serverInfra: { createApp } } = require(`./infrastructure`);
 const { serverConfig: { port } } = require(`./config`);
 

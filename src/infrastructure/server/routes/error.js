@@ -7,7 +7,8 @@
 
 const { ApiError, errorCodes: { internalServerErrorCode } } = require(`../utils`);
 
-const createErrorRoute = ({ reportError }) => (err, req, res) => {
+// eslint-disable-next-line no-unused-vars
+const createErrorRoute = ({ reportError }) => (err, req, res, next) => {
 	const errorExpected = err instanceof ApiError;
 	if (!errorExpected) reportError(err, req);
 
@@ -31,4 +32,4 @@ const createErrorRoute = ({ reportError }) => (err, req, res) => {
 
 module.exports = {
 	createErrorRoute,
-};  
+};

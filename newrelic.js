@@ -10,7 +10,7 @@ require(`dotenv`).config();
 // eslint-disable-next-line no-undef
 const NEWRELIC_LICENCE_KEY = process.env.NEWRELIC_LICENCE_KEY || ``;
 // eslint-disable-next-line no-undef
-const APP_NAME = process.env.APP_NAME;
+const APP_NAME = process.env.APP_NAME || ``;
 
 exports.config = {
 	/**
