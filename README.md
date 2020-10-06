@@ -1,4 +1,4 @@
-# nodejs-postgres-template
+# express-postgres-template
 Boilerplate application doing CRUD operations using NodeJs with Express framework, PostgreSQL as database, Sequeslize as ORM. Application uses Rollbar and New Relic for error tracking, Postman APIs collection for testing APIs, and eslint, husky, and lint-staged for code-linting purposes.
 
     NodeJs v12.18.3
@@ -32,7 +32,7 @@ Summed up steps:-
 - list users `\du`
 - change password of main user 'postgres' to 'postgres' `ALTER USER "postgres" WITH PASSWORD 'postgres';`
 - add user named 'fun' with password 'gyaan' `CREATE USER "fun" WITH PASSWORD 'gyaan';`
-- create database named 'nodejs-postgres-template' with owner as 'fun' `CREATE DATABASE "nodejs-postgres-template" OWNER "fun";`
+- create database named 'express-postgres-template' with owner as 'fun' `CREATE DATABASE "express-postgres-template" OWNER "fun";`
 - to exit cli `exit`
 - to exit as super user `exit`
 
@@ -60,7 +60,7 @@ Summed up steps:-
     - `npm run start`
 - Test the APIs using Postman API Collection
     - open postman
-    - import 'nodejs-postgres-template.postman_collection.json' placed in the root directory
+    - import 'express-postgres-template.postman_collection.json' placed in the root directory
     - once the server is running, send the CRUD requests one by one
 
 ## 7. [CircleCI](https://circleci.com) and [Hroku](https://heroku.com)

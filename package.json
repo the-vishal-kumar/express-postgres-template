@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-postgres-template",
+  "name": "express-postgres-template",
   "version": "1.0.0",
   "description": "CRUD application using NodeJs with Express framework, PostgreSQL as database, Sequeslize as ORM. Application uses Rollbar for error tracking, NewRelic for APIs analysis, Postman APIs collection for testing APIs, and eslint, husky, and lint-staged for code-linting purposes.",
   "main": "src/index.js",
@@ -25,7 +25,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/the-vishal-kumar/nodejs-postgres-template"
+    "url": "https://github.com/the-vishal-kumar/express-postgres-template"
   },
   "keywords": [
     "nodejs",
