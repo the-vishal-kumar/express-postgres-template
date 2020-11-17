@@ -15,5 +15,5 @@ jobs:
           name: Check code quality
           command: npm run pretest
       - run:
-          name: Deploy to Heroku Staging or Production
-          command: git push --force https://heroku:${HEROKU_API_KEY}@git.heroku.com/${HEROKU_APP_NAME}.git HEAD:refs/heads/master
+          name: Deploy to Heroku Staging
+          command: git push --force https://heroku:${HEROKU_API_KEY}@git.heroku.com/${HEROKU_APP_NAME}.git +HEAD:refs/heads/master
