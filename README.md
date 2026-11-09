@@ -1,3 +1,7 @@
+> **Archived.** Written in 2020 and kept as a record of earlier work. It is no longer maintained and its dependencies are outdated.
+>
+> For a current TypeScript setup, see [nodejs-typescript-rest-boilerplate](https://github.com/the-vishal-kumar/nodejs-typescript-rest-boilerplate).
+
 # express-postgres-template
 Boilerplate application doing CRUD operations using NodeJs with Express framework, PostgreSQL as database, Sequeslize as ORM. Application uses Rollbar and New Relic for error tracking, Postman APIs collection for testing APIs, and eslint, husky, and lint-staged for code-linting purposes.
 
