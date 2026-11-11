@@ -1,9 +1,7 @@
-> **Archived.** Written in 2020 and kept as a record of earlier work. It is no longer maintained and its dependencies are outdated.
->
-> For a current TypeScript setup, see [nodejs-typescript-rest-boilerplate](https://github.com/the-vishal-kumar/nodejs-typescript-rest-boilerplate).
+> **Archived (2020).** A template I wrote between August and November 2020, early in my career, while learning Express, Sequelize and Heroku deploys. It is kept as a record of where I started. It is not maintained, its dependencies are out of date, and it should not be deployed as-is. For how I structure a Node.js API today, see [nodejs-typescript-rest-boilerplate](https://github.com/the-vishal-kumar/nodejs-typescript-rest-boilerplate).
 
 # express-postgres-template
-Boilerplate application doing CRUD operations using NodeJs with Express framework, PostgreSQL as database, Sequeslize as ORM. Application uses Rollbar and New Relic for error tracking, Postman APIs collection for testing APIs, and eslint, husky, and lint-staged for code-linting purposes.
+Boilerplate application doing CRUD operations using NodeJs with Express framework, PostgreSQL as database, Sequelize as ORM. Application uses Rollbar and New Relic for error tracking, Postman APIs collection for testing APIs, and eslint, husky, and lint-staged for code-linting purposes.
 
     NodeJs v12.18.3
     PostgreSQL v12.4
@@ -18,6 +16,39 @@ Boilerplate application doing CRUD operations using NodeJs with Express framewor
 
     CircleCI
     Heroku
+
+## Security note
+
+Read this before copying any of the code.
+
+- **Hard-coded database credentials.** `src/config.js` contains the local user and password, and production falls back to them when `DATABASE_URL` is missing.
+- **TLS without verification.** Production connects to PostgreSQL with `rejectUnauthorized: false`, which Heroku Postgres needed at the time. It encrypts the connection but does not check who is on the other end.
+- **Development wipes the database.** With `NODE_ENV=development` the app runs `sequelize.sync({ force: true })` on every start, which drops and recreates all tables.
+- **No authentication.** Anyone who can reach the API can list, change and delete every user.
+- **Every branch deploys.** `.circleci/config.yml` force-pushes any branch to the Heroku app, and puts the Heroku API key in the git remote URL.
+
+Fixed during archiving:
+
+- 500 responses used to include the raw Sequelize error, including the row that failed. They now return only a code and message, and the error goes to the error reporter.
+- The development config always required TLS, so the quickstart failed against a local PostgreSQL. TLS is now opt-in in development with `DATABASE_SSL=true`.
+
+## What I'd do differently today
+
+- **Secrets from the environment only,** loaded from a secrets manager, with the app refusing to start when a required one is missing. No credentials in source, not even local ones.
+- **Migrations, never `sync`.** Schema changes go through reviewed migrations that run once per deploy. `sync({ force: true })` has no place in shared code.
+- **Validate at the edge with a schema** (for example zod or Joi) that also types the handler, and return one consistent error shape.
+- **Authentication and authorisation** on every route that reads or changes user data.
+- **Tests.** The template has none. I would add unit tests for the core, integration tests against a disposable PostgreSQL (Testcontainers), and run both in CI before any deploy.
+- **Deploy from the main branch only,** build once and promote the same artefact through environments, with a short-lived, least-privilege deploy token.
+- **Observability.** Structured JSON logs with request IDs, and OpenTelemetry traces and metrics instead of vendor-specific agents.
+
+## Outdated advice in this README
+
+Sections 4 to 7 describe tools as they were in 2020:
+
+- Heroku ended free dynos and free Postgres in November 2022, so the steps below now need a paid plan.
+- The `circleci/node:erbium` image is deprecated; CircleCI's current images are `cimg/node`.
+- Section 7 uses your account-wide Heroku API key in CI. Today I would create a dedicated token with `heroku authorizations:create` and scope CI to one app.
 
 ## 1. Install [PostgreSQL](https://www.postgresql.org/download)
 
@@ -56,8 +87,9 @@ Summed up steps:-
 
 ## 6. Starting the project on local machine
 - Make copy of .env.sample as .env in root directory
-- Generate Rollbar Access Token (Optional Step 4)
-- Generate NewRelic Licence Key (Optional Step 3)
+- Leave `DATABASE_SSL=false` for a local PostgreSQL; set it to `true` if your database requires TLS
+- Generate a Rollbar access token (optional, see step 4)
+- Generate a New Relic licence key (optional, see step 5)
 - Open Terminal in root directory of project and run following commands:
     - `npm i`
     - `npm run db:migrate`
@@ -67,7 +99,7 @@ Summed up steps:-
     - import 'express-postgres-template.postman_collection.json' placed in the root directory
     - once the server is running, send the CRUD requests one by one
 
-## 7. [CircleCI](https://circleci.com) and [Hroku](https://heroku.com)
+## 7. [CircleCI](https://circleci.com) and [Heroku](https://heroku.com)
 - `Heroku` Step 1
     - Signup on `Heroku` using your email
     - Create a new pipeline
